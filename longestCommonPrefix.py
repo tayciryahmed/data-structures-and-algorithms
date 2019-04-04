@@ -33,3 +33,34 @@ class longestCommonPrefix(object):
                 pref = pref[:-1]
 
         return pref
+
+    def my_vertical_scanning(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+
+        if len(strs) == 0:
+            return ""
+
+        i = len(strs)
+        j = 0
+        pref = -1
+
+        while j < len(strs[0]) and i == len(strs):
+            i = 0
+
+            while i < len(strs) and len(strs[i]) > j:
+                if strs[i][j] != strs[0][j]:
+                    break
+                i += 1
+
+            if len(strs) == i:
+                pref = j
+
+            j += 1
+
+        if pref > -1:
+            return strs[0][:pref+1]
+
+        return ""
