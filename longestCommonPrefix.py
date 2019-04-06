@@ -133,3 +133,39 @@ class longestCommonPrefix(object):
                 return left[:i]
         
         return left[:min_len]
+
+    def binary_search(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        if len(strs) == 0: return ""
+        min_len = len(strs[0])
+        for s in strs: 
+            if len(s) < min_len: min_len = len(s)
+        
+        low = 1 
+        high = min_len
+        
+        while (low <= high):
+            mid = (low + high)/2
+            if (self.isCP(strs, mid)):
+                low = mid + 1
+            else:
+                high = mid - 1 
+                
+            print(strs[0][:((low+high)/2)])
+        
+        return strs[0][:((low+high)/2)]
+            
+    
+    
+    
+    def isCP(self, strs, mid):
+        pref = strs[0][:mid]
+        for i in range(len(strs)):
+            if not strs[i].startswith(pref):
+                return False
+        
+        return True
+        
