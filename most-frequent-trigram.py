@@ -25,6 +25,28 @@ class MostFrequentTrigram:
 
         return max_trigram
 
+    
+    def solve_optimize(self, text):
+        text = text.lower().replace('.', ' . ') 
+        words = text.split()
+        
+        trigrams = {}
+        
+        for i, word in enumerate(words):
+            if (i + 2 < len(words)) and ('.' not in words[i:i+3]):
+   
+                if ' '.join(words[i:i+3]) not in trigrams.keys():
+                    trigrams[' '.join(words[i:i+3])] = 1 
+                else:
+                    trigrams[' '.join(words[i:i+3])] += 1
+                        
+        max_trigram = max(trigrams.keys(), key=(lambda k: trigrams[k]))
+        
+        if trigrams[max_trigram] == 1:
+            return ' '.join(words[:3])
+
+        return max_trigram
+    
 if __name__ == "__main__":
     input_text = sys.stdin.read()
     solution = MostFrequentTrigram()
