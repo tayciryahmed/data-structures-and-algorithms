@@ -1,0 +1,49 @@
+FROM nvcr.io/nvidia/tensorflow:19.05-py3
+
+# Environment Setup
+ENV SHELL /bin/bash
+ENV NB_USER ubuntu
+ENV NB_UID 12574
+ENV HOME /home/$NB_USER
+
+
+# Add user
+RUN useradd -m -s /bin/bash -u $NB_UID -U $NB_USER
+USER root
+RUN echo "ubuntu ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN chown -R $NB_USER:$NB_USER $HOME
+
+# OS dependencies
+RUN apt-get -q update && apt-get -yq install  openssh-server
+
+
+# Code Server VS Code
+USER root
+ENV CODESERVER_VERSION 1.939-vsc1.33.1
+RUN cd /tmp/ \ 
+    && wget https://github.com/codercom/code-server/releases/download/${CODESERVER_VERSION}/code-server${CODESERVER_VERSION}-linux-x64.tar.gz \
+    && tar xvf code-server${CODESERVER_VERSION}-linux-x64.tar.gz \
+    && cp code-server${CODESERVER_VERSION}-linux-x64/code-server /usr/local/bin/ \
+    && rm -r code-server${CODESERVER_VERSION}-linux-x64*
+
+    
+# Setup datascience home directory
+USER $NB_USER
+RUN mkdir /home/$NB_USER/datalab && \
+    mkdir /home/$NB_USER/.jupyter && \
+    mkdir /home/$NB_USER/.local && \
+    echo "cacert=/etc/ssl/certs/ca-certificates.crt" > /home/$NB_USER/.curlrc
+
+
+# openseq2seq
+USER root
+ENV ADD_PKG_PATH /usr/local/additional_packages
+RUN mkdir $ADD_PKG_PATH
+RUN pip install num2words
+RUN cd $ADD_PKG_PATH && git clone https://github.com/NVIDIA/OpenSeq2Seq 
+RUN apt-get update && apt-get install swig
+RUN cd $ADD_PKG_PATH/OpenSeq2Seq/ && bash ./scripts/install_decoders.sh
+
+RUN pip3 install torch torchvision
+
+USER $NB_USER
