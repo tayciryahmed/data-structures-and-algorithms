@@ -15,3 +15,12 @@ class Solution:
         
         return ans 
             
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        ans = {}
+        
+        for x in strs:
+            y = ''.join(sorted(x))
+            ans[y] = ans.setdefault(y, []) + [x]
+        
+        return ans.values()
