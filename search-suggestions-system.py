@@ -21,3 +21,19 @@ class Solution:
         return ans
             
         
+class Solution:
+    def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:
+        
+        products.sort()
+        
+        ans = []
+        prefix = ''
+        i = 0 
+        
+        for c in searchWord:
+            prefix += c
+            i = bisect.bisect_left(products, prefix, i)
+            ans.append([x for x in products[i:i+3] if x.startswith(prefix)])
+        
+        return ans 
+            
