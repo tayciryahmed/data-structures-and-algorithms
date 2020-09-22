@@ -1,19 +1,16 @@
-class Solution:
-    def nearestPalindromic(self, S):
-        K = len(S)
-        candidates = [str(10**k + d) for k in (K-1, K) for d in (-1, 1)]
-        prefix = S[:(K+1)//2]
-        P = int(prefix)
-        for start in map(str, (P-1, P, P+1)):
-            candidates.append(start + (start[:-1] if K%2 else start)[::-1])
-
-        def delta(x):
-            return abs(int(S) - int(x))
-
-        ans = None
-        for cand in candidates:
-            if cand != S and not cand.startswith('00'):
-                if (ans is None or delta(cand) < delta(ans) or
-                        delta(cand) == delta(ans) and int(cand) < int(ans)):
-                    ans = cand
-        return ans
+class Solution(object):
+    def nearestPalindromic(self, n):
+        """
+        :type n: str
+        :rtype: str
+        """
+        # based on @awice and @o_sharp
+        l = len(n)
+        # with different digits width, it must be either 10...01 or 9...9
+        candidates = set((str(10 ** l + 1), str(10 ** (l - 1) - 1)))
+        # the closest must be in middle digit +1, 0, -1, then flip left to right
+        prefix = int(n[:(l + 1)/2])
+        for i in map(str, (prefix - 1, prefix, prefix + 1)):
+            candidates.add(i + [i, i[:-1]][l & 1][::-1])
+        candidates.discard(n)
+        return min(candidates, key=lambda x: (abs(int(x) - int(n)), int(x)))
