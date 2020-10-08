@@ -1,10 +1,5 @@
 class Solution(object):
     def nearestPalindromic(self, n):
-        """
-        :type n: str
-        :rtype: str
-        """
-        # based on @awice and @o_sharp
         l = len(n)
         # with different digits width, it must be either 10...01 or 9...9
         candidates = set((str(10 ** l + 1), str(10 ** (l - 1) - 1)))
