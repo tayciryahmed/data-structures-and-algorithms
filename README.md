@@ -6,6 +6,24 @@
 * https://www.youtube.com/watch?v=HREeLryOh4Q&ab_channel=ArtificialIntelligence-AllinOne
 * https://www.youtube.com/watch?v=JUJNGv_sb4Y&ab_channel=stanfordonline
 
+Typical example questions are:
+
+* Design a newsfeed ranking algorithm
+* Design local search ranking
+* Design if an old post would be good for "On this Day" memories feature
+* This is the key highlights of what is expected for the Machine Learning Design interview:
+
+Expectations
+
+* You should be able to describe the components of an end-to-end ML system, including but not
+limited to; model development, evaluation, and deployment.
+* You should be able to use existing toolsets to model the problem and break down its
+components.
+* Be ready to analyze your approach while understanding the tradeoffs between your design
+decisions.
+* We expect you to have a good understanding of common ML tools/techniques, but we do not
+expect you to know and memorize every ML algorithm out there.
+
 # System design 
 * https://systemsthatscale.org/
 * https://github.com/donnemartin/system-design-primer
