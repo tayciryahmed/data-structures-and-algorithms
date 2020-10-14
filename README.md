@@ -38,3 +38,4 @@ expect you to know and memorize every ML algorithm out there.
 * Common ML concepts (including but not limited to) - bias/variance tradeoff, underfitting/overfitting, Linear/Logistic regression, cost functions, regularization, PCA, etc.
 * Neural Networks - drawing the architecture and explain cost functions, backpropagation algorithm (Usually a smaller 2-3 layer network).
 * Deep Learning - different layers, functionality and uses
+* Neural networks, relu function, learning rate, bias variance
