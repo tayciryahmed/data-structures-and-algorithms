@@ -39,4 +39,5 @@ expect you to know and memorize every ML algorithm out there.
 * Neural Networks - drawing the architecture and explain cost functions, backpropagation algorithm (Usually a smaller 2-3 layer network).
 * Deep Learning - different layers, functionality and uses
 * Neural networks, relu function, learning rate, bias variance
-* adam 
+* adam
+* https://github.com/kojino/120-Data-Science-Interview-Questions
