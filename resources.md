@@ -28,6 +28,7 @@ expect you to know and memorize every ML algorithm out there.
 * https://systemsthatscale.org/
 * https://github.com/donnemartin/system-design-primer
 * https://www.educative.io/courses/grokking-the-system-design-interview
+* https://www.linkedin.com/pulse/5-tips-preparing-system-design-interviews-diaa-abdallah/
 
 # Coding 
 * leetcode 
